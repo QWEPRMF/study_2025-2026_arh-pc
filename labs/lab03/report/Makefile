@@ -1,0 +1,17 @@
+SRC = report.md
+PDF = report.pdf
+DOCX = report.docx
+PDF_ENGINE = xelatex
+
+all: $(PDF) $(DOCX)
+
+$(PDF): $(SRC)
+	pandoc $(SRC) -o $(PDF) --pdf-engine=$(PDF_ENGINE) -V lang=russian -V mainfont="DejaVu Serif"
+
+$(DOCX): $(SRC)
+	pandoc $(SRC) -o $(DOCX)
+
+clean:
+	rm -f $(PDF) $(DOCX)
+
+.PHONY: all clean
